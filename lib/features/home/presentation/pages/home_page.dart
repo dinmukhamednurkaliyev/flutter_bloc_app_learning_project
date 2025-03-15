@@ -12,6 +12,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    bloc.add(HomeInitialEvent());
+    super.initState();
+  }
+
   final HomeBloc bloc = HomeBloc();
   @override
   Widget build(BuildContext context) {
@@ -33,26 +39,35 @@ class _HomePageState extends State<HomePage> {
         }
       },
       builder: (context, state) {
-        return Scaffold(
-          appBar: AppBar(
-            backgroundColor: Colors.teal,
-            title: Text('Grocery App'),
-            actions: [
-              IconButton(
-                onPressed: () {
-                  bloc.add(HomeWishlistButtonNavigateClickedEvent());
-                },
-                icon: Icon(Icons.favorite_outline),
+        switch (state.runtimeType) {
+          case HomeLoadingState _:
+            return Scaffold(body: Center(child: CircularProgressIndicator()));
+          case HomeLoadedSuccessState _:
+            return Scaffold(
+              appBar: AppBar(
+                backgroundColor: Colors.teal,
+                title: Text('Grocery App'),
+                actions: [
+                  IconButton(
+                    onPressed: () {
+                      bloc.add(HomeWishlistButtonNavigateClickedEvent());
+                    },
+                    icon: Icon(Icons.favorite_outline),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      bloc.add(HomeCartButtonNavigateClickedEvent());
+                    },
+                    icon: Icon(Icons.shopping_bag_outlined),
+                  ),
+                ],
               ),
-              IconButton(
-                onPressed: () {
-                  bloc.add(HomeCartButtonNavigateClickedEvent());
-                },
-                icon: Icon(Icons.shopping_bag_outlined),
-              ),
-            ],
-          ),
-        );
+            );
+          case HomeErrorState _:
+            return Scaffold(body: Center(child: Text('Error')));
+          default:
+            return SizedBox();
+        }
       },
     );
   }
