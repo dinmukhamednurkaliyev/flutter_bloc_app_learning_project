@@ -1,16 +1,9 @@
-# flutter_bloc_app_learning_project
+# Flutter Bloc App (Learning Project)
 
-A new Flutter project.
+## Description
 
-## Getting Started
+This project is created with the goal of learning mobile application development using Flutter and diving into the world of creating interactive user interfaces.The application is a simple movie browsing app.
 
-This project is a starting point for a Flutter application.
+## Resources
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Youtube: [Flutter Bloc Project! | One video and you are master of Flutter Bloc](https://www.youtube.com/watch?v=Y1roIi0-Sro)
