@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_app_learning_project/features/cart/presentation/pages/cart_page.dart';
 import 'package:flutter_bloc_app_learning_project/features/home/presentation/bloc/bloc/home_bloc.dart';
+import 'package:flutter_bloc_app_learning_project/features/home/presentation/widgets/product_tile_widget.dart';
 import 'package:flutter_bloc_app_learning_project/features/wishlist/presentation/pages/wishlist_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -40,9 +41,10 @@ class _HomePageState extends State<HomePage> {
       },
       builder: (context, state) {
         switch (state.runtimeType) {
-          case HomeLoadingState _:
+          case const (HomeLoadingState):
             return Scaffold(body: Center(child: CircularProgressIndicator()));
-          case HomeLoadedSuccessState _:
+          case const (HomeLoadedSuccessState):
+            final successState = state as HomeLoadedSuccessState;
             return Scaffold(
               appBar: AppBar(
                 backgroundColor: Colors.teal,
@@ -62,8 +64,16 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
+              body: ListView.builder(
+                itemCount: successState.products.length,
+                itemBuilder: (context, index) {
+                  return ProductTileWidget(
+                    product: successState.products[index],
+                  );
+                },
+              ),
             );
-          case HomeErrorState _:
+          case const (HomeErrorState):
             return Scaffold(body: Center(child: Text('Error')));
           default:
             return SizedBox();
