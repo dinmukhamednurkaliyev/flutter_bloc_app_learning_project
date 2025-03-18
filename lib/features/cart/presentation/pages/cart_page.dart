@@ -24,7 +24,13 @@ class _CartPageState extends State<CartPage> {
       appBar: AppBar(backgroundColor: Colors.teal, title: Text('Cart')),
       body: BlocConsumer<CartBloc, CartState>(
         bloc: bloc,
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state is CartRemoveProductItemActionState) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Product removed from cart')),
+            );
+          }
+        },
         listenWhen: (previous, current) => current is CartActionState,
         buildWhen: (previous, current) => current is! CartActionState,
         builder: (context, state) {

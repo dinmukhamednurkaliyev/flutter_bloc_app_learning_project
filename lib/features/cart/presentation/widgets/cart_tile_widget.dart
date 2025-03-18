@@ -43,7 +43,12 @@ class CartTileWidget extends StatelessWidget {
                     onPressed: () {},
                     icon: Icon(Icons.favorite_outline),
                   ),
-                  IconButton(onPressed: () {}, icon: Icon(Icons.shopping_bag)),
+                  IconButton(
+                    onPressed: () {
+                      bloc.add(CartRemoveItemEvent(clickedProduct: product));
+                    },
+                    icon: Icon(Icons.shopping_bag),
+                  ),
                 ],
               ),
             ],
