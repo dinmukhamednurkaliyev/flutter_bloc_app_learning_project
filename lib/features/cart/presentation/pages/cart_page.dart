@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_app_learning_project/features/cart/presentation/bloc/bloc/cart_bloc.dart';
-import 'package:flutter_bloc_app_learning_project/features/cart/presentation/widgets/product_tile_widget.dart';
+import 'package:flutter_bloc_app_learning_project/features/cart/presentation/widgets/cart_tile_widget.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({super.key});
